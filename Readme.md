@@ -1,57 +1,37 @@
-Goal: take block has as input and get all the block information represented on a UI.
+# AOC Combined Leaderboard
 
-How to use
 
-Download bitcoin core https://bitcoin.org/en/full-node
+There is a limit of 200 people in most Advent of Code leaderboards
 
-modify your bitcoin.conf
-Example:
-```regtest = 1
-server=1
-dbcache=1536
-par=1
-maxuploadtarget=137
-maxconnections=16
-rpcuser=ozioma
-rpcpassword=daniel
-rpcallowip=127.0.0.1
-debug=tor
-prune=550
-mintxfee=0.001
-txconfirmtarget=1
-[test]
-rpcbind=127.0.0.1
-rpcport=18332
-[main]
-rpcbind=127.0.0.1
-rpcport=8332
-[regtest]
-rpcbind=127.0.0.1
-rpcport=18443
-```
+This service allows you combine multiple leaderboards into a single one.
 
-Install bitcoin-cli and Run bitcoin core as a daemon process
-See https://bitcoin.org/en/full-node#other-linux-daemon
+## How to use:
 
-Clone project and from the project root folder run gradle assemble, 
-From the project root folder run
+-  Advent of code has a leaderboard api that is protected by your cookie which expires after about a month.  Example: https://adventofcode.com/2022/leaderboard/private/view/{leaderboardId}.json
+- You can find this url by clicking on **Api** in your leaderboard and then **Json** in the resulting page.
+- Go to the url and copy the **cookie header** in the request from your browser.
+- Add the leaderboard id and cookie to `resources/application.conf` file in this repository.
+-       aocConfig {  
+          leaderboardIds = ["leaderboard_id_1", "leaderboard_id_2"...]  
+          cookies = ["cookie_1", "cookie_2"]  
+          }
 
-`gradlew assemble`
 
-if permission is denied, run
-`chmod 755 gradlew` first  before gradlew assemble
 
-this would build a .jar file that in the build folder that you can then run using
 
-    java -jar /build/libs/com.ozioma.bitcoinexplorer-all.jar
+- Clone project and From the project root folder run
+xk
+  	`gradlew assemble`  
 
-goto: http://127.0.0.1:8080/block/full/{block_hash}/
-to view the information about a block.
+  if permission is denied, run  
+  `chmod 755 gradlew` first  before `gradlew assemble  `
 
-Http calls are made to the bitcoin node using https://ktor.io
+  this would build a .jar file that in the build folder that you can then run using
 
-Block information is rendered using FreeMarker https://ktor.io/docs/freemarker.html
+  `java -jar /build/libs/com.ozioma.aocleaderboard-all.jar
+`
 
-This project is for experimenting and learning how to use the block chain, not for production.
+get the combined leaderboard by visiting
 
+http://127.0.0.1:8080/leaderboard/2022
 

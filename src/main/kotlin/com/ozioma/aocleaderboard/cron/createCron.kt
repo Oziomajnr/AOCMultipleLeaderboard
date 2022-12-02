@@ -1,4 +1,4 @@
-package com.ozioma.cron
+package com.ozioma.aocleaderboard.cron
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

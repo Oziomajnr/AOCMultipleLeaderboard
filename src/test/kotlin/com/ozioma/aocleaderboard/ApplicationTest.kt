@@ -1,4 +1,4 @@
-package com.ozioma
+package com.ozioma.aocleaderboard
 
 import io.ktor.server.routing.*
 import io.ktor.http.*

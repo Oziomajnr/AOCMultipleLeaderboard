@@ -1,1 +1,1 @@
-rootProject.name = "com.ozioma.bitcoinexplorer"
+rootProject.name = "com.ozioma.aocleaderboard"

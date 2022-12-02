@@ -1,4 +1,4 @@
-package com.ozioma.plugins
+package com.ozioma.aocleaderboard.plugins
 
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*

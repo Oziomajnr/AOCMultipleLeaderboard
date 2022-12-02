@@ -10,10 +10,10 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.21"
 }
 
-group = "com.ozioma"
+group = "com.ozioma.aocleaderboard"
 version = "0.0.1"
 application {
-    mainClass.set("com.ozioma.ApplicationKt")
+    mainClass.set("com.ozioma.aocleaderboard.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -34,8 +34,4 @@ dependencies {
     implementation("io.ktor:ktor-client-core:$ktor_version")
     implementation("io.ktor:ktor-client-cio:$ktor_version")
     implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-    implementation("io.ktor:ktor-server-freemarker:$ktor_version")
-    implementation("com.slack.api:slack-api-client:1.27.2")
-    implementation("com.slack.api:slack-api-model-kotlin-extension:1.27.2")
-    implementation("com.slack.api:slack-api-client-kotlin-extension:1.27.2")
 }

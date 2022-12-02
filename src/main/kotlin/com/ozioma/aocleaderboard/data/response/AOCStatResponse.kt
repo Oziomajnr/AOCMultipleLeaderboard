@@ -1,4 +1,4 @@
-package com.ozioma.data.response
+package com.ozioma.aocleaderboard.data.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -45,19 +45,3 @@ data class StarStat(
     @SerialName("get_star_ts") val timeStarGotten: Long,
     @SerialName("star_index") val starIndex: Long
 )
-
-fun AOCStatResponse.toStats(): AgodaAocStats {
-    return AgodaAocStats(
-        totalNumberOfStars = this.members.entries.sumOf {
-            it.value.stars
-        },
-        totalNumberOfUsersWithAtLeastOneStar = this.members.entries.filter {
-            it.value.stars >= 1
-        }.size,
-        this.members.entries.map {
-            it.value
-        }.sortedBy {
-            it.stars
-        }
-    )
-}
