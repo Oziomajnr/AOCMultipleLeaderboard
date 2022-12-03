@@ -10,6 +10,7 @@ This service allows you combine multiple leaderboards into a single one.
 -  Advent of code has a leaderboard api that is protected by your cookie which expires after about a month.  Example: https://adventofcode.com/2022/leaderboard/private/view/{leaderboardId}.json
 - You can find this url by clicking on **Api** in your leaderboard and then **Json** in the resulting page.
 - Go to the url and copy the **cookie header** in the request from your browser.
+-  Clone this repoistory.
 - Add the leaderboard id and cookie to `resources/application.conf` file in this repository.
 -       aocConfig {  
           leaderboardIds = ["leaderboard_id_1", "leaderboard_id_2"...]  
@@ -19,8 +20,7 @@ This service allows you combine multiple leaderboards into a single one.
 
 
 
-- Clone project and From the project root folder run
-xk
+- From the project root folder run
   	`gradlew assemble`  
 
   if permission is denied, run  

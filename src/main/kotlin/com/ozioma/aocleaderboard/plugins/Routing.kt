@@ -4,7 +4,6 @@ package com.ozioma.aocleaderboard.plugins
 import com.ozioma.aocleaderboard.data.config.LeaderboardConfig
 import com.ozioma.aocleaderboard.data.response.AOCStatResponse
 import com.ozioma.aocleaderboard.network.AdventOfCodeApi
-import com.ozioma.aocleaderboard.repository.ConfigRepository
 import io.ktor.client.call.*
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -12,6 +11,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 
 
 fun Application.configureRouting() {
@@ -51,15 +51,14 @@ fun Route.aocRouting() {
                         )
                     }
 
-                }.map { response ->
-                    val aocHttpResponse = response.await()
-                    if (aocHttpResponse.first.status != HttpStatusCode.OK) {
+                }.awaitAll().map { response ->
+                    if (response.first.status != HttpStatusCode.OK) {
                         call.respond(
-                            aocHttpResponse.first.status,
-                            "Failed to get leaderboard stat for code ${aocHttpResponse.second.leaderboardCode}"
+                            response.first.status,
+                            "Failed to get leaderboard stat for code ${response.second.leaderboardCode}"
                         )
                     }
-                    aocHttpResponse.first.body() as AOCStatResponse
+                    response.first.body() as AOCStatResponse
                 }.zipWithNext { a, b ->
                     AOCStatResponse(a.ownerID, year, a.members.toMutableMap().plus(b.members))
                 }.map { stateResponse ->
